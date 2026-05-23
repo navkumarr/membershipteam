@@ -3,13 +3,11 @@ import KanbanView from './KanbanView'
 import TimelineView from './TimelineView'
 import AddActionItemModal from './AddActionItemModal'
 import ManageTeamModal from '../team/ManageTeamModal'
-import GeminiModal from '../ai/GeminiModal'
 
 export default function ActionItemsSection() {
   const [view, setView] = useState('kanban')
   const [showAddModal, setShowAddModal] = useState(false)
   const [showTeamModal, setShowTeamModal] = useState(false)
-  const [showGemini, setShowGemini] = useState(false)
   const [defaultStatus, setDefaultStatus] = useState('todo')
   const [editingItem, setEditingItem] = useState(null)
 
@@ -62,18 +60,6 @@ export default function ActionItemsSection() {
             Team
           </button>
 
-          {/* Gemini button */}
-          <button
-            onClick={() => setShowGemini(true)}
-            className="btn inline-flex items-center gap-1.5 bg-gradient-to-r from-blue-500 to-violet-600 text-white hover:from-blue-600 hover:to-violet-700"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-            </svg>
-            AI Generate
-          </button>
-
           <button onClick={() => openAdd('todo')} className="btn-primary">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -97,7 +83,6 @@ export default function ActionItemsSection() {
         />
       )}
       {showTeamModal && <ManageTeamModal onClose={() => setShowTeamModal(false)} />}
-      {showGemini && <GeminiModal onClose={() => setShowGemini(false)} />}
     </section>
   )
 }

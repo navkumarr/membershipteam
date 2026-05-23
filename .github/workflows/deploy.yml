@@ -37,7 +37,7 @@ jobs:
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
-          VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
+          # Gemini key is NOT needed here — it lives as a Supabase secret, never in the bundle
           # Sets the asset base path to /<repo-name>/ so JS/CSS links resolve correctly
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
 
