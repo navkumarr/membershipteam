@@ -41,10 +41,10 @@ export default function ActionItemCard({ item, isDragOverlay, onEdit }) {
     <div
       ref={setNodeRef}
       style={style}
-      className={`bg-white dark:bg-navy-900 rounded-lg border shadow-sm transition-all duration-200 ${
+      className={`bg-white dark:bg-slate-900 rounded-lg border shadow-sm transition-all duration-200 ${
         isDragOverlay
-          ? 'shadow-xl border-gold ring-1 ring-gold rotate-1 scale-105 z-50'
-          : 'border-gray-200 dark:border-navy-800 hover:border-gray-300 dark:hover:border-navy-700 hover:shadow-md'
+          ? 'shadow-xl border-slate-900 dark:border-slate-100 ring-1 ring-slate-900 dark:ring-slate-100 rotate-1 scale-105 z-50'
+          : 'border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md'
       }`}
     >
       <div className="flex items-start gap-2 p-3">
@@ -52,7 +52,7 @@ export default function ActionItemCard({ item, isDragOverlay, onEdit }) {
         <button
           {...attributes}
           {...listeners}
-          className="mt-0.5 text-gray-300 dark:text-navy-800 hover:text-gray-500 dark:hover:text-gold cursor-grab active:cursor-grabbing flex-shrink-0 touch-none transition-colors"
+          className="mt-0.5 text-slate-300 dark:text-slate-800 hover:text-slate-500 dark:hover:text-slate-400 cursor-grab active:cursor-grabbing flex-shrink-0 touch-none transition-colors"
           aria-label="Drag to reorder"
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -63,20 +63,20 @@ export default function ActionItemCard({ item, isDragOverlay, onEdit }) {
         </button>
 
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-gray-800 dark:text-slate-100 leading-snug">{item.title}</p>
+          <p className="text-sm font-medium text-slate-800 dark:text-slate-100 leading-snug">{item.title}</p>
 
           <div className="flex items-center gap-2 mt-2 flex-wrap">
             {assignee && (
-              <div className="flex items-center gap-1.5 px-1.5 py-0.5 rounded bg-gray-50 dark:bg-navy-800 border border-gray-100 dark:border-navy-700/50">
+              <div className="flex items-center gap-1.5 px-1.5 py-0.5 rounded bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700/50">
                 <Avatar member={assignee} />
-                <span className="text-[11px] font-medium text-gray-500 dark:text-slate-400">{assignee.name.split(' ')[0]}</span>
+                <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">{assignee.name.split(' ')[0]}</span>
               </div>
             )}
             {(startDateFormatted || dueDateFormatted) && (
               <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold tracking-tight uppercase ${
                 isOverdue
                   ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-red-100 dark:border-red-900/30'
-                  : 'bg-gray-100 dark:bg-navy-800 text-gray-500 dark:text-slate-400 border border-gray-200 dark:border-navy-700'
+                  : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700'
               }`}>
                 {startDateFormatted && dueDateFormatted
                   ? `${startDateFormatted} → ${dueDateFormatted}`
@@ -91,7 +91,7 @@ export default function ActionItemCard({ item, isDragOverlay, onEdit }) {
           {item.description && (
             <button
               onClick={() => setExpanded((e) => !e)}
-              className="p-1 text-gray-300 dark:text-navy-700 hover:text-gray-600 dark:hover:text-gold transition-colors"
+              className="p-1 text-slate-300 dark:text-slate-700 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
               aria-label={expanded ? 'Collapse' : 'Expand'}
             >
               <svg className={`w-3.5 h-3.5 transition-transform ${expanded ? 'rotate-180' : ''}`}
@@ -103,7 +103,7 @@ export default function ActionItemCard({ item, isDragOverlay, onEdit }) {
           {onEdit && (
             <button
               onClick={() => onEdit(item)}
-              className="p-1 text-gray-300 dark:text-navy-700 hover:text-gold transition-colors"
+              className="p-1 text-slate-300 dark:text-slate-700 hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
               aria-label="Edit"
             >
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -114,7 +114,7 @@ export default function ActionItemCard({ item, isDragOverlay, onEdit }) {
           )}
           <button
             onClick={() => deleteActionItem(item.id)}
-            className="p-1 text-gray-300 dark:text-navy-700 hover:text-red-500 transition-colors"
+            className="p-1 text-slate-300 dark:text-slate-700 hover:text-red-500 transition-colors"
             aria-label="Delete"
           >
             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -126,7 +126,7 @@ export default function ActionItemCard({ item, isDragOverlay, onEdit }) {
 
       {expanded && item.description && (
         <div className="px-3 pb-3 pt-0">
-          <p className="text-xs text-gray-500 dark:text-slate-400 leading-relaxed border-t border-gray-100 dark:border-navy-800 pt-2 italic">
+          <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800 pt-2 italic">
             {item.description}
           </p>
         </div>

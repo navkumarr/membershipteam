@@ -7,24 +7,8 @@
     box-sizing: border-box;
   }
   body {
-    @apply bg-slate-50 dark:bg-navy-950 text-gray-900 dark:text-slate-100 transition-colors duration-200;
+    @apply bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  }
-
-  ::selection {
-    @apply bg-gold/30 text-navy-900 dark:text-gold;
-  }
-
-  /* Custom Scrollbar for dark mode */
-  .dark ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-  .dark ::-webkit-scrollbar-track {
-    @apply bg-navy-950;
-  }
-  .dark ::-webkit-scrollbar-thumb {
-    @apply bg-navy-800 rounded-full border-2 border-navy-950 hover:bg-navy-700;
   }
 }
 
@@ -33,30 +17,30 @@
     @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all cursor-pointer active:scale-95;
   }
   .btn-primary {
-    @apply btn bg-gold text-navy-950 hover:bg-gold-500 shadow-sm hover:shadow shadow-gold/20;
+    @apply btn bg-slate-900 dark:bg-slate-100 text-slate-100 dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200 shadow-sm;
   }
   .btn-secondary {
-    @apply btn bg-white dark:bg-navy-900 text-gray-700 dark:text-slate-200 border border-gray-200 dark:border-navy-800 hover:bg-gray-50 dark:hover:bg-navy-800;
+    @apply btn bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800;
   }
   .btn-ghost {
-    @apply btn text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-gold hover:bg-gray-100 dark:hover:bg-navy-900;
+    @apply btn text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800;
   }
   .btn-danger {
     @apply btn bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-transparent hover:border-red-200 dark:hover:border-red-800/50 hover:bg-red-100 dark:hover:bg-red-900/30;
   }
   .card {
-    @apply bg-white dark:bg-navy-900 rounded-lg border border-gray-200 dark:border-navy-800 shadow-sm transition-all;
+    @apply bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm transition-all;
   }
   .input {
-    @apply block w-full rounded-md border border-gray-300 dark:border-navy-800 bg-white dark:bg-navy-950 text-gray-900 dark:text-slate-100 placeholder-gray-400 dark:placeholder-navy-700 px-3 py-2 text-sm shadow-sm focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold transition-all;
+    @apply block w-full rounded-md border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-700 px-3 py-2 text-sm shadow-sm focus:border-slate-500 dark:focus:border-slate-400 focus:outline-none focus:ring-1 focus:ring-slate-500 dark:focus:ring-slate-400 transition-all;
   }
   .label {
-    @apply block text-sm font-medium text-gray-700 dark:text-slate-400 mb-1;
+    @apply block text-sm font-medium text-slate-700 dark:text-slate-400 mb-1;
   }
   .modal-backdrop {
-    @apply fixed inset-0 bg-navy-950/60 dark:bg-black/80 backdrop-blur-sm z-40 flex items-end sm:items-center justify-center sm:p-4;
+    @apply fixed inset-0 bg-slate-900/40 dark:bg-black/80 backdrop-blur-sm z-40 flex items-end sm:items-center justify-center sm:p-4;
   }
   .modal {
-    @apply card w-full sm:max-w-md p-6 z-50 rounded-t-xl sm:rounded-xl max-h-[90vh] overflow-y-auto border-navy-800 shadow-2xl;
+    @apply card w-full sm:max-w-md p-6 z-50 rounded-t-xl sm:rounded-xl max-h-[90vh] overflow-y-auto border-slate-200 dark:border-slate-800 shadow-2xl;
   }
 }

@@ -33,13 +33,13 @@ export default function ActionItemsSection() {
         <h2 className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">Action Items</h2>
         <div className="flex items-center gap-2">
           {/* View toggle — desktop only */}
-          <div className="hidden sm:flex items-center bg-gray-100 dark:bg-navy-900 rounded-lg p-1 gap-1 border border-gray-200 dark:border-navy-800">
+          <div className="hidden sm:flex items-center bg-slate-100 dark:bg-slate-900 rounded-lg p-1 gap-1 border border-slate-200 dark:border-slate-800">
             <button
               onClick={() => setView('kanban')}
               className={`px-4 py-1.5 rounded-md text-xs font-bold tracking-wide transition-all duration-200 ${
                 view === 'kanban'
-                  ? 'bg-white dark:bg-navy-800 text-navy-950 dark:text-gold shadow-sm'
-                  : 'text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200'
+                  ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
               }`}
             >
               KANBAN
@@ -48,8 +48,8 @@ export default function ActionItemsSection() {
               onClick={() => setView('timeline')}
               className={`px-4 py-1.5 rounded-md text-xs font-bold tracking-wide transition-all duration-200 ${
                 view === 'timeline'
-                  ? 'bg-white dark:bg-navy-800 text-navy-950 dark:text-gold shadow-sm'
-                  : 'text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200'
+                  ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
               }`}
             >
               TIMELINE

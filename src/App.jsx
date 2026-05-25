@@ -12,7 +12,7 @@ function ThemeToggle({ isDark, onToggle, className = '' }) {
   return (
     <button
       onClick={onToggle}
-      className={`p-2 rounded-md transition-colors text-slate-400 hover:text-white hover:bg-navy-800 ${className}`}
+      className={`p-2 rounded-md transition-colors text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 ${className}`}
       title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       {isDark ? (
@@ -34,20 +34,20 @@ function MobileTopBar({ isDark, onToggleTheme }) {
   const currentUser = useStore((s) => s.currentUser)
 
   return (
-    <div className="md:hidden flex items-center justify-between px-4 h-14 bg-navy-900 border-b border-navy-800 flex-shrink-0">
+    <div className="md:hidden flex items-center justify-between px-4 h-14 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex-shrink-0">
       <div className="flex items-center gap-2">
-        <div className="w-6 h-6 rounded bg-gold flex items-center justify-center flex-shrink-0">
-          <svg className="w-3.5 h-3.5 text-navy-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="w-6 h-6 rounded bg-slate-900 dark:bg-slate-100 flex items-center justify-center flex-shrink-0">
+          <svg className="w-3.5 h-3.5 text-white dark:text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
         </div>
-        <span className="font-semibold text-sm text-white">Membership PM</span>
+        <span className="font-semibold text-sm text-slate-900 dark:text-white">Membership PM</span>
       </div>
       <div className="flex items-center gap-1">
         <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
         <button
           onClick={() => signOut()}
-          className="p-2 rounded-md text-slate-400 hover:text-white hover:bg-navy-800 transition-colors"
+          className="p-2 rounded-md text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
           title="Sign out"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -77,12 +77,12 @@ function MobileBottomNav() {
   }
 
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-navy-900 border-t border-navy-800 flex z-40">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex z-40">
       <Link
         to="/"
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         className={`flex-1 flex flex-col items-center gap-1 py-3 text-xs transition-colors ${
-          isHome ? 'text-gold' : 'text-slate-500 hover:text-slate-300'
+          isHome ? 'text-slate-900 dark:text-white' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'
         }`}
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +93,7 @@ function MobileBottomNav() {
       </Link>
       <button
         onClick={handleMeetingNotesClick}
-        className="flex-1 flex flex-col items-center gap-1 py-3 text-xs text-slate-500 hover:text-slate-300 transition-colors"
+        className="flex-1 flex flex-col items-center gap-1 py-3 text-xs text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -112,8 +112,8 @@ function Dashboard() {
   if (loading) {
     return (
       <div className="flex-1 flex items-center justify-center">
-        <div className="flex items-center gap-3 text-gray-500 dark:text-slate-400">
-          <svg className="animate-spin w-5 h-5 text-navy-900 dark:text-gold" fill="none" viewBox="0 0 24 24">
+        <div className="flex items-center gap-3 text-slate-500 dark:text-slate-400">
+          <svg className="animate-spin w-5 h-5 text-slate-900 dark:text-slate-100" fill="none" viewBox="0 0 24 24">
             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
           </svg>
@@ -128,7 +128,7 @@ function Dashboard() {
       <div className="flex-1 flex items-center justify-center">
         <div className="text-center">
           <p className="text-red-600 font-medium mb-1">Failed to load data</p>
-          <p className="text-sm text-gray-500 dark:text-slate-400">{error}</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400">{error}</p>
         </div>
       </div>
     )
@@ -166,7 +166,7 @@ export default function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <AuthGate>
-        <div className="flex h-screen overflow-hidden bg-slate-50 dark:bg-navy-950 transition-colors duration-200">
+        <div className="flex h-screen overflow-hidden bg-slate-50 dark:bg-slate-950 transition-colors duration-200">
           <Sidebar isDark={isDark} onToggleTheme={toggleTheme} />
           <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
             <MobileTopBar isDark={isDark} onToggleTheme={toggleTheme} />
