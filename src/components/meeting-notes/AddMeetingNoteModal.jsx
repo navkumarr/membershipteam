@@ -44,7 +44,7 @@ export default function AddMeetingNoteModal({ onClose }) {
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-base font-semibold text-gray-800">New Meeting Note</h3>
+          <h3 className="text-base font-semibold text-gray-800 dark:text-white">New Meeting Note</h3>
           <button onClick={onClose} className="btn-ghost p-1">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -103,9 +103,7 @@ export default function AddMeetingNoteModal({ onClose }) {
           </div>
 
           <div className="flex justify-end gap-2 pt-2">
-            <button type="button" onClick={onClose} className="btn-secondary">
-              Cancel
-            </button>
+            <button type="button" onClick={onClose} className="btn-secondary">Cancel</button>
             <button type="submit" disabled={submitting} className="btn-primary disabled:opacity-60">
               {submitting ? 'Creating…' : 'Create Page'}
             </button>

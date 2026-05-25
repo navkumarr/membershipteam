@@ -43,20 +43,15 @@ export default function KanbanView({ onAddItem, onEdit }) {
     const activeId = active.id
     const overId = over.id
 
-    // Find the status of the dragged item
     const draggedItem = actionItems.find((i) => i.id === activeId)
     if (!draggedItem) return
 
-    // Determine target status:
-    // over could be a column droppable (status string) or another card id
     let targetStatus = draggedItem.status
 
-    // Check if dropped on a column droppable
     const columnStatuses = COLUMNS.map((c) => c.status)
     if (columnStatuses.includes(overId)) {
       targetStatus = overId
     } else {
-      // Dropped on a card — get that card's status
       const overItem = actionItems.find((i) => i.id === overId)
       if (overItem) targetStatus = overItem.status
     }
@@ -73,7 +68,8 @@ export default function KanbanView({ onAddItem, onEdit }) {
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
-      <div className="flex gap-5">
+      {/* Horizontal scroll on mobile, flex row on desktop */}
+      <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0 sm:overflow-visible sm:gap-5">
         {COLUMNS.map((col) => {
           const items = actionItems.filter((i) => i.status === col.status)
           return (

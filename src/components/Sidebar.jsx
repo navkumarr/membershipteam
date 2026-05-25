@@ -25,7 +25,7 @@ const navItems = [
   },
 ]
 
-export default function Sidebar() {
+export default function Sidebar({ isDark, onToggleTheme }) {
   const location = useLocation()
   const currentUser = useStore((s) => s.currentUser)
 
@@ -38,23 +38,23 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="w-56 flex-shrink-0 bg-gray-900 text-gray-100 flex flex-col h-full">
+    <aside className="hidden md:flex w-56 flex-shrink-0 bg-navy-900 text-slate-100 flex-col h-full">
       {/* Logo */}
-      <div className="px-5 py-5 border-b border-gray-700/60">
+      <div className="px-5 py-5 border-b border-navy-800">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-md bg-indigo-500 flex items-center justify-center">
-            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="w-7 h-7 rounded-md bg-gold flex items-center justify-center flex-shrink-0">
+            <svg className="w-4 h-4 text-navy-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5}
                 d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <span className="font-semibold text-sm tracking-wide">Membership PM</span>
+          <span className="font-semibold text-sm tracking-wide text-white">Membership PM</span>
         </div>
       </div>
 
       {/* Nav */}
       <nav className="flex-1 px-3 py-4 space-y-0.5">
-        <p className="px-2 pt-2 pb-1 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+        <p className="px-2 pt-2 pb-1 text-xs font-semibold text-navy-600 uppercase tracking-wider">
           Workspace
         </p>
         {navItems.map((item) => {
@@ -65,8 +65,8 @@ export default function Sidebar() {
               to={item.href}
               className={`flex items-center gap-2.5 px-2 py-2 rounded-md text-sm transition-colors ${
                 isActive
-                  ? 'bg-gray-700/60 text-white'
-                  : 'text-gray-400 hover:text-gray-100 hover:bg-gray-700/40'
+                  ? 'bg-navy-800 text-gold'
+                  : 'text-slate-400 hover:text-white hover:bg-navy-800'
               }`}
             >
               {item.icon}
@@ -77,20 +77,45 @@ export default function Sidebar() {
       </nav>
 
       {/* User footer */}
-      <div className="px-3 py-3 border-t border-gray-700/60">
-        <div className="flex items-center gap-2.5 px-2 py-2 rounded-md">
-          <div className="w-7 h-7 rounded-full bg-indigo-500 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
+      <div className="px-3 py-3 border-t border-navy-800">
+        <div className="flex items-center gap-2 px-2 py-1.5 mb-1">
+          <div className="w-7 h-7 rounded-full bg-gold flex items-center justify-center text-xs font-bold text-navy-900 flex-shrink-0">
             {initials}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs text-gray-300 truncate">{currentUser?.email}</p>
+            <p className="text-xs text-slate-400 truncate">{currentUser?.email}</p>
           </div>
+        </div>
+        <div className="flex items-center gap-1 px-1">
+          <button
+            onClick={onToggleTheme}
+            className="flex-1 flex items-center gap-2 px-2 py-1.5 rounded-md text-xs text-slate-400 hover:text-white hover:bg-navy-800 transition-colors"
+            title={isDark ? 'Light mode' : 'Dark mode'}
+          >
+            {isDark ? (
+              <>
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                Light mode
+              </>
+            ) : (
+              <>
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+                Dark mode
+              </>
+            )}
+          </button>
           <button
             onClick={handleSignOut}
-            className="text-gray-500 hover:text-gray-200 transition-colors flex-shrink-0"
+            className="p-1.5 rounded-md text-slate-400 hover:text-white hover:bg-navy-800 transition-colors flex-shrink-0"
             title="Sign out"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                 d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
             </svg>

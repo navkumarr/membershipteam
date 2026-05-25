@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import useStore from '../../store/useStore'
 
-// Pass `item` prop to enter edit mode
 export default function AddActionItemModal({ onClose, defaultStatus = 'todo', item = null }) {
   const teamMembers = useStore((s) => s.teamMembers)
   const addActionItem = useStore((s) => s.addActionItem)
@@ -52,7 +51,7 @@ export default function AddActionItemModal({ onClose, defaultStatus = 'todo', it
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-base font-semibold text-gray-800">
+          <h3 className="text-base font-semibold text-gray-800 dark:text-white">
             {isEdit ? 'Edit Action Item' : 'Add Action Item'}
           </h3>
           <button onClick={onClose} className="btn-ghost p-1">
