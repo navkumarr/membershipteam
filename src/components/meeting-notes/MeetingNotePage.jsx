@@ -6,11 +6,11 @@ import remarkGfm from 'remark-gfm'
 import useStore from '../../store/useStore'
 
 const CATEGORY_COLORS = {
-  'Planning': 'bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300',
-  'Weekly Sync': 'bg-teal-100 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300',
-  'Review': 'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300',
-  'Retro': 'bg-pink-100 dark:bg-pink-900/40 text-pink-700 dark:text-pink-300',
-  'Design': 'bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300',
+  'Planning': 'bg-blue-100 dark:bg-navy-800 text-blue-700 dark:text-gold border dark:border-navy-700',
+  'Weekly Sync': 'bg-teal-100 dark:bg-emerald-900/20 text-teal-700 dark:text-emerald-400 border dark:border-emerald-900/30',
+  'Review': 'bg-amber-100 dark:bg-gold/10 text-amber-700 dark:text-gold border dark:border-gold/20',
+  'Retro': 'bg-pink-100 dark:bg-pink-900/20 text-pink-700 dark:text-pink-400 border dark:border-pink-900/30',
+  'Design': 'bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 border dark:border-purple-900/30',
 }
 
 export default function MeetingNotePage() {
@@ -64,7 +64,7 @@ export default function MeetingNotePage() {
     )
   }
 
-  const catCls = CATEGORY_COLORS[note.category] || 'bg-gray-100 dark:bg-navy-700 text-gray-600 dark:text-slate-300'
+  const catCls = CATEGORY_COLORS[note.category] || 'bg-gray-100 dark:bg-navy-900 text-gray-600 dark:text-slate-400 border dark:border-navy-800'
 
   return (
     <div className="flex-1 overflow-y-auto">
@@ -72,16 +72,16 @@ export default function MeetingNotePage() {
         {/* Back button */}
         <button
           onClick={() => navigate('/')}
-          className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-slate-400 hover:text-gray-800 dark:hover:text-white mb-6 transition-colors"
+          className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-slate-400 hover:text-navy-950 dark:hover:text-gold mb-6 transition-all duration-200 group"
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
           Back to Dashboard
         </button>
 
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-8">
           {editingTitle ? (
             <input
               className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white w-full border-b-2 border-gold outline-none bg-transparent pb-1 mb-4"
@@ -96,7 +96,7 @@ export default function MeetingNotePage() {
             />
           ) : (
             <h1
-              className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white cursor-text hover:bg-gray-100 dark:hover:bg-navy-800 rounded px-1 -ml-1 transition-colors inline-block mb-4"
+              className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white cursor-text hover:bg-gray-100 dark:hover:bg-navy-900 rounded px-1 -ml-1 transition-colors inline-block mb-4"
               onClick={() => setEditingTitle(true)}
               title="Click to edit title"
             >
@@ -106,8 +106,8 @@ export default function MeetingNotePage() {
 
           <div className="flex items-center gap-3 text-sm text-gray-500 dark:text-slate-400 flex-wrap">
             {note.date && (
-              <span className="flex items-center gap-1">
-                <svg className="w-4 h-4 text-gray-400 dark:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="flex items-center gap-1.5 px-2 py-1 rounded bg-gray-50 dark:bg-navy-900 border border-gray-100 dark:border-navy-800">
+                <svg className="w-4 h-4 text-gray-400 dark:text-navy-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
@@ -115,7 +115,7 @@ export default function MeetingNotePage() {
               </span>
             )}
             {note.category && (
-              <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${catCls}`}>
+              <span className={`px-2.5 py-1 rounded-full text-[11px] font-bold tracking-tight uppercase ${catCls}`}>
                 {note.category}
               </span>
             )}
@@ -123,48 +123,40 @@ export default function MeetingNotePage() {
         </div>
 
         {/* Editor toolbar */}
-        <div className="flex items-center justify-between mb-3 border-b border-gray-200 dark:border-navy-700 pb-2">
-          <div className="flex rounded-md overflow-hidden border border-gray-200 dark:border-navy-600">
+        <div className="flex items-center justify-between mb-4 border-b border-gray-200 dark:border-navy-900 pb-3">
+          <div className="flex rounded-lg overflow-hidden border border-gray-200 dark:border-navy-800 p-0.5 bg-gray-50 dark:bg-navy-900">
             <button
               onClick={() => setMode('write')}
-              className={`px-3 py-1.5 text-xs font-medium transition-colors ${
+              className={`px-4 py-1.5 text-xs font-bold transition-all duration-200 rounded-md ${
                 mode === 'write'
-                  ? 'bg-navy-900 dark:bg-gold text-white dark:text-navy-900'
-                  : 'bg-white dark:bg-navy-800 text-gray-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-navy-700'
+                  ? 'bg-navy-950 dark:bg-gold text-white dark:text-navy-950 shadow-sm'
+                  : 'text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200'
               }`}
             >
-              Write
+              WRITE
             </button>
             <button
               onClick={() => setMode('preview')}
-              className={`px-3 py-1.5 text-xs font-medium transition-colors border-l border-gray-200 dark:border-navy-600 ${
+              className={`px-4 py-1.5 text-xs font-bold transition-all duration-200 rounded-md ${
                 mode === 'preview'
-                  ? 'bg-navy-900 dark:bg-gold text-white dark:text-navy-900'
-                  : 'bg-white dark:bg-navy-800 text-gray-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-navy-700'
+                  ? 'bg-navy-950 dark:bg-gold text-white dark:text-navy-950 shadow-sm'
+                  : 'text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200'
               }`}
             >
-              Preview
+              PREVIEW
             </button>
           </div>
 
           <div className="flex items-center gap-3">
-            {mode === 'write' && (
-              <div className="hidden sm:flex items-center gap-2 text-xs text-gray-400 dark:text-slate-500">
-                <span className="font-mono bg-gray-100 dark:bg-navy-700 px-1 rounded"># H1</span>
-                <span className="font-mono bg-gray-100 dark:bg-navy-700 px-1 rounded">**bold**</span>
-                <span className="font-mono bg-gray-100 dark:bg-navy-700 px-1 rounded">- list</span>
-                <span className="font-mono bg-gray-100 dark:bg-navy-700 px-1 rounded">- [ ] task</span>
-              </div>
-            )}
-            <span className={`text-xs ${saved ? 'text-gray-400 dark:text-slate-500' : 'text-amber-500'}`}>
-              {saved ? 'Saved' : 'Saving…'}
+            <span className={`text-[10px] font-bold tracking-widest uppercase transition-colors duration-500 ${saved ? 'text-emerald-500/50 dark:text-emerald-500/30' : 'text-gold'}`}>
+              {saved ? '● Synced' : '○ Saving'}
             </span>
           </div>
         </div>
 
         {mode === 'write' && (
           <textarea
-            className="w-full min-h-[60vh] text-gray-800 dark:text-slate-200 text-sm leading-relaxed resize-none outline-none bg-transparent placeholder-gray-300 dark:placeholder-navy-600 font-mono"
+            className="w-full min-h-[60vh] text-gray-800 dark:text-slate-200 text-sm leading-relaxed resize-none outline-none bg-transparent placeholder-gray-300 dark:placeholder-navy-800 font-mono focus:ring-0"
             placeholder={`Start writing your meeting notes here…\n\n# Heading 1\n## Heading 2\n\n**bold text**, _italic text_\n\n- Bullet item\n- [ ] Task checkbox\n- [x] Completed task`}
             value={content}
             onChange={(e) => setContent(e.target.value)}
@@ -175,14 +167,14 @@ export default function MeetingNotePage() {
         {mode === 'preview' && (
           <div className="min-h-[60vh]">
             {content.trim() ? (
-              <div className="prose prose-sm prose-gray dark:prose-invert max-w-none">
+              <div className="prose prose-sm prose-gray dark:prose-invert max-w-none prose-headings:text-navy-950 dark:prose-headings:text-gold prose-a:text-blue-600 dark:prose-a:text-gold prose-strong:text-gray-900 dark:prose-strong:text-white">
                 <Markdown remarkPlugins={[remarkGfm]}>
                   {content}
                 </Markdown>
               </div>
             ) : (
-              <div className="flex items-center justify-center min-h-[200px]">
-                <p className="text-gray-400 dark:text-slate-500 text-sm">Nothing to preview yet. Switch to Write to add content.</p>
+              <div className="flex items-center justify-center min-h-[200px] border-2 border-dashed border-gray-100 dark:border-navy-900 rounded-xl">
+                <p className="text-gray-400 dark:text-navy-700 text-sm italic">Nothing to preview yet. Switch to Write to add content.</p>
               </div>
             )}
           </div>

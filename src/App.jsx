@@ -166,7 +166,7 @@ export default function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <AuthGate>
-        <div className="flex h-screen overflow-hidden bg-slate-50 dark:bg-navy-900">
+        <div className="flex h-screen overflow-hidden bg-slate-50 dark:bg-navy-950 transition-colors duration-200">
           <Sidebar isDark={isDark} onToggleTheme={toggleTheme} />
           <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
             <MobileTopBar isDark={isDark} onToggleTheme={toggleTheme} />
